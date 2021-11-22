@@ -9,7 +9,6 @@
 
 ## Laravel Api
 ## Passport Setup
-
 1. Install Passport
 composer require laravel/passport
 <br/>
