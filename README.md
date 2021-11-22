@@ -11,7 +11,6 @@
 ## Passport Setup
 
 1. Install Passport
-<br/>
 composer require laravel/passport
 <br/>
 COMPOSER_MEMORY_LIMIT=-1 composer require laravel/passport
@@ -24,6 +23,7 @@ php artisan passport:install
 
 4. User Model
 use Laravel\Passport\HasApiTokens;
+<br/>
 use HasApiTokens, HasFactory, Notifiable;
 
 5. Update App\Providers\AuthServiceProvider
