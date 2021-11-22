@@ -37,3 +37,5 @@ Route::delete('/delete-user-details/{id}', [UserApiController::class, 'deleteUse
 Route::delete('/delete-user-details-with-json', [UserApiController::class, 'deleteUserDetailsWithJSON'])->name('delete.user.details.with.json');
 //DELETE Api for multiple data Delete
 Route::delete('/delete-multiple-user/{ids}', [UserApiController::class, 'deleteMultipleUserDetails'])->name('delete.multiple.user.details');
+//DELETE Api for multiple data Delete using ajax
+Route::delete('/delete-multiple-user-with-json', [UserApiController::class, 'deleteMultipleUserDetailsWithJSON'])->name('delete.multiple.user.details.with.json');
