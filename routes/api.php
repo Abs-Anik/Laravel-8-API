@@ -19,4 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/user/{id?}', [UserApiController::class, 'ShowUser'])->name('user.list');
+// Get Api
+Route::get('/user/{id?}', [UserApiController::class, 'showUser'])->name('user.list');
+//Post Api
+Route::post('/add-user', [UserApiController::class, 'addUser'])->name('user.store');
