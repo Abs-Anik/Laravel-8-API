@@ -176,4 +176,24 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 200);
         }
     }
+
+    public function deleteJWTWithJSON(Request $request){
+        $header = $request->header('Authorization');
+        if($header == ''){
+            $message = "Authorization is required";
+            return response()->json(['message' => $message], 422);
+        }else{
+            if($header == 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFuaWsiLCJpYXQiOjE1MTYyMzkwMjJ9.fqxga_jQ_q9ZL7-zIHCmUbJRzWGvKjWTEbwX2YOpIsw'){
+                if($request->isMethod('delete')){
+                    $data = $request->all();
+                    User::whereIn('id', $data['ids'])->delete();
+                    $message = "User Successfully Deleted";
+                    return response()->json(['message' => $message], 200);
+                }
+            }else{
+                $message = "Authorization does not matched";
+                return response()->json(['message' => $message], 422);
+            }
+        }
+    }
 }
