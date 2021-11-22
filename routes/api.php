@@ -31,5 +31,7 @@ Route::put('/update-user-details/{id}', [UserApiController::class, 'updateUserDe
 //PATCH Api for single data update
 Route::patch('/update-user-single-details/{id}', [UserApiController::class, 'updateSingleUserDetails'])->name('update.userssigle.item');
 
-//DELETE Api for single data update
+//DELETE Api for single data Delete
 Route::delete('/delete-user-details/{id}', [UserApiController::class, 'deleteUserDetails'])->name('delete.user.details');
+//DELETE Api for single data Delete using json input data
+Route::delete('/delete-user-details-with-json', [UserApiController::class, 'deleteUserDetailsWithJSON'])->name('delete.user.details.with.json');
