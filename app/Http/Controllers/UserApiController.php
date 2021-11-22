@@ -118,4 +118,29 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 202);
         }
     }
+
+    public function updateSingleUserDetails(Request $request,$id){
+        if($request->isMethod('patch')){
+            $data = $request->all();
+
+            $rules = [
+                'name' => 'required',
+            ];
+
+            $customMessage = [
+                'name.required' => 'Name is required',
+            ];
+
+            $validator = Validator::make($data, $rules, $customMessage);
+            if($validator->fails()){
+                return response()->json($validator->errors(),422);
+            }
+
+            $user = User::findOrFail($id);
+            $user->name = $data['name'];
+            $user->save();
+            $message = 'Data Updated Successfully';
+            return response()->json(['message' => $message], 202);
+        }
+    }
 }
