@@ -28,5 +28,8 @@ Route::post('/add-multiple-user', [UserApiController::class, 'addMultipleUser'])
 
 //PUT Api for multiple data update
 Route::put('/update-user-details/{id}', [UserApiController::class, 'updateUserDetails'])->name('update.user.list');
-//PATCH Api for multiple data update
+//PATCH Api for single data update
 Route::patch('/update-user-single-details/{id}', [UserApiController::class, 'updateSingleUserDetails'])->name('update.userssigle.item');
+
+//DELETE Api for single data update
+Route::delete('/delete-user-details/{id}', [UserApiController::class, 'deleteUserDetails'])->name('delete.user.details');

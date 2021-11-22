@@ -143,4 +143,11 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 202);
         }
     }
+
+    public function deleteUserDetails($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        $message = "User Successfully Deleted";
+        return response()->json(['message' => $message], 200);
+    }
 }
