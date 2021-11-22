@@ -21,5 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Get Api
 Route::get('/user/{id?}', [UserApiController::class, 'showUser'])->name('user.list');
-//Post Api
+//Single Post Api
 Route::post('/add-user', [UserApiController::class, 'addUser'])->name('user.store');
+//Multiple Post Api
+Route::post('/add-multiple-user', [UserApiController::class, 'addMultipleUser'])->name('multipleuser.store');

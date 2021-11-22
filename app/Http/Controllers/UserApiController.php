@@ -50,4 +50,39 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 201);
         }
     }
+
+    public function addMultipleUser(Request $request)
+    {
+        if($request->ismethod('post')){
+            $data = $request->all();
+
+            $rules = [
+                'users.*.name' => 'required',
+                'users.*.email' => 'required|email|unique:users',
+                'users.*.password' => 'required',
+            ];
+
+            $customMessage = [
+                'users.*.name.required' => 'Name is required',
+                'users.*.email.required' => 'Email is required',
+                'users.*.email.email' => 'Email must be a valid email',
+                'users.*.password.required' => 'Password is required',
+            ];
+
+            $validator = Validator::make($data, $rules, $customMessage);
+            if($validator->fails()){
+                return response()->json($validator->errors(),422);
+            }
+
+            foreach($data['users'] as $addUser){
+                $user = new User();
+                $user->name = $addUser['name'];
+                $user->email = $addUser['email'];
+                $user->password = bcrypt($addUser['password']);
+                $user->save();
+                $message = 'Data Saved Successfully';
+            }
+            return response()->json(['message' => $message], 201);
+        }
+    }
 }
