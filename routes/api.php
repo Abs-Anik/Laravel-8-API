@@ -42,5 +42,8 @@ Route::delete('/delete-multiple-user-with-json', [UserApiController::class, 'del
 //DELETE with Authorization JWT
 Route::delete('/delete-jwt', [UserApiController::class, 'deleteJWTWithJSON'])->name('deleteJWTWithJSON');
 
-//Passport Route
+//Passport Registration Route
 Route::post('/register-user-using-passport', [UserApiController::class, 'registerUserUsingPassport']);
+
+//Passport Login Route
+Route::post('/login-user-using-passport', [UserApiController::class, 'loginUserUsingPassport']);

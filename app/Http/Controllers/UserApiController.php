@@ -239,4 +239,38 @@ class UserApiController extends Controller
             }
         }
     }
+    //login using passport api
+    public function loginUserUsingPassport(Request $request){
+        if($request->ismethod('post')){
+            $data = $request->all();
+
+            $rules = [
+                'email' => 'required|email|exists:users',
+                'password' => 'required',
+            ];
+
+            $customMessage = [
+                'email.required' => 'Email is required',
+                'email.email' => 'Email must be a valid email',
+                'email.exists' => 'Email does not exists',
+                'password.required' => 'Password is required',
+            ];
+
+            $validator = Validator::make($data, $rules, $customMessage);
+            if($validator->fails()){
+                return response()->json($validator->errors(),422);
+            }
+
+            if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
+                $user = User::where('email', $data['email'])->first();
+                $access_token = $user->createToken($data['email'])->accessToken;
+                User::where('email', $data['email'])->update(['access_token' => $access_token]);
+                $message = 'User Successfully Login';
+                return response()->json(['message' => $message, 'access_token' => $access_token], 201);
+            }else{
+                $message = 'Invalid Email or Password';
+                return response()->json(['message' => $message], 422);
+            }
+        }
+    }
 }
