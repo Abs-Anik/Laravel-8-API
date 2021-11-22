@@ -25,3 +25,7 @@ Route::get('/user/{id?}', [UserApiController::class, 'showUser'])->name('user.li
 Route::post('/add-user', [UserApiController::class, 'addUser'])->name('user.store');
 //Multiple Post Api
 Route::post('/add-multiple-user', [UserApiController::class, 'addMultipleUser'])->name('multipleuser.store');
+
+//PUT Api for multiple data update
+Route::put('/update-user-details/{id}', [UserApiController::class, 'updateUserDetails'])->name('update.user.list');
+
