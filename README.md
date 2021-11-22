@@ -11,9 +11,11 @@
 ## Passport Setup
 
 1. Install Passport
+<br/>
 composer require laravel/passport
+<br/>
 COMPOSER_MEMORY_LIMIT=-1 composer require laravel/passport
-
+<br/>
 2. Migration
 php artisan migrate
 
